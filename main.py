@@ -7,7 +7,11 @@ def create_table(connection):
         create_table_query = """
         CREATE TABLE students (
         student_id INT PRIMARY KEY,
+<<<<<<< HEAD
         name VARCHAR(20),
+=======
+        name VARCHAR(1000),
+>>>>>>> test
         major VARCHAR(20)
         );
         """
