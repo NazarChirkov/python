@@ -10,8 +10,7 @@ def create_table(connection):
 <<<<<<< HEAD
         name VARCHAR(20),
 =======
-        name VARCHAR(1000),
->>>>>>> test
+=
         major VARCHAR(20)
         );
         """
