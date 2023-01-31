@@ -42,6 +42,12 @@ def update_row(connection,table,name_of_row):
                         WHERE major = '%s'
         """ % (table, name_of_row))
         print("Rows update seccesfully")
+def do_smth(connection,query):
+    cursor = connection.cursor()
+    cursor.execute(query)
+    connection.commit()
+
+    print("seccesfully")
 def mySQL():
  try:
     connection = pymysql.connect(
@@ -55,8 +61,12 @@ def mySQL():
     #create_table(connection,"students")
     #create_user(connection,"students", "Oleg", "UK")
     #update_row(connection,"students","Maths")
-    #drop_table(connection,"students")
-    show_all_rows(connection,"students")
+    #drop_table(connection, "branch")
+    #drop_table(connection,"employee")
+    #show_all_rows(connection,"students")
+    do_smth(connection,"""INSERT INTO employee VALUES(101, 'Jan', 'Levinson', '1961-05-11', 'F', 110000, 100, 1);
+
+""")
     connection.close()
  except Exception as ex:
     print(ex)
