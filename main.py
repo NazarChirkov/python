@@ -28,12 +28,15 @@ def drop_table(connection, table):
         print("Table deleted seccesfully")
 def show_all_rows(connection,table):
         cursor = connection.cursor()
-        cursor.execute("""SELECT name
+        cursor.execute("""SELECT Department.name, Employeer.name AS EMPLOYEE , Employeer.salary AS SALARY
                         FROM %s
-                        WHERE name IN ('Oleg')""" %(table))
+                        JOIN Department
+                        ON department = Department.id
+                        ORDER BY name, salary DESC
+                        """ %(table))
         rows = cursor.fetchall()
         for row in rows:
-            print(row['name'])
+            print(row)
         print("Rows show seccesfully")
 def update_row(connection,table,name_of_row):
         cursor = connection.cursor()
@@ -63,10 +66,8 @@ def mySQL():
     #update_row(connection,"students","Maths")
     #drop_table(connection, "branch")
     #drop_table(connection,"employee")
-    #show_all_rows(connection,"students")
-    do_smth(connection,"""INSERT INTO employee VALUES(101, 'Jan', 'Levinson', '1961-05-11', 'F', 110000, 100, 1);
-
-""")
+    #do_smth(connection,"""SELECT * FROM Employeer""")
+    show_all_rows(connection,"Employeer")
     connection.close()
  except Exception as ex:
     print(ex)
