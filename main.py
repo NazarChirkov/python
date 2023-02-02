@@ -28,12 +28,11 @@ def drop_table(connection, table):
         print("Table deleted seccesfully")
 def show_all_rows(connection,table):
         cursor = connection.cursor()
-        cursor.execute("""SELECT Department.name, Employeer.name AS EMPLOYEE , Employeer.salary AS SALARY
-                        FROM %s
-                        JOIN Department
-                        ON department = Department.id
-                        ORDER BY name, salary DESC
-                        """ %(table))
+        cursor.execute("""SELECT SUM(employee.salary) AS SALARY, branch.branch_name AS NAME
+                        FROM employee 
+                        JOIN branch ON employee.branch_id = branch.branch_id
+                        GROUP BY employee.branch_id;
+                        """ )
         rows = cursor.fetchall()
         for row in rows:
             print(row)
